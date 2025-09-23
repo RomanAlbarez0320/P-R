@@ -1,47 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const starsContainer = document.querySelector('.stars');
-    const heartsBackground = document.querySelector('.hearts-background');
-
-    // Crea y anima las estrellas fugaces
-    function createShootingStar() {
-        const star = document.createElement('div');
-        star.classList.add('shooting-star');
-        star.style.left = `${Math.random() * 100}vw`;
-        star.style.top = `${Math.random() * 80}vh`;
-        star.style.animationDuration = `${Math.random() * 2 + 1}s`;
-        star.style.width = `${Math.random() * 2 + 1}px`;
-        star.style.height = `${Math.random() * 2 + 1}px`;
-        starsContainer.appendChild(star);
-        star.addEventListener('animationend', () => star.remove());
-    }
+// Script para generar corazones y flores flotantes
+document.addEventListener('DOMContentLoaded', function() {
+  const heartsContainer = document.querySelector('.hearts-background');
+  const hearts = ['❤️', '💖', '💕', '💗', '💓'];
+  const flowers = ['🌸', '🌺', '🌷', '💐', '🌹'];
+  
+  function createFloatingElement() {
+    const element = document.createElement('div');
+    const isHeart = Math.random() > 0.5;
+    const symbols = isHeart ? hearts : flowers;
+    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
     
-    // Asegúrate de que este estilo esté en tu CSS si no lo tienes:
-    // Ya lo incluí en el bloque CSS anterior para tu comodidad.
+    element.className = isHeart ? 'heart' : 'flower';
+    element.innerHTML = symbol;
+    element.style.left = Math.random() * 100 + 'vw';
+    element.style.animationDuration = (Math.random() * 10 + 10) + 's';
+    element.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
     
-    setInterval(createShootingStar, 5000); // Crea una estrella fugaz cada 5 segundos
-
-    // Crea y anima corazones y flores flotantes
-    function createHeartOrFlower() {
-        const element = document.createElement('div');
-        element.style.left = `${Math.random() * 100}vw`;
-        element.style.animationDuration = `${Math.random() * 8 + 7}s`;
-        element.style.animationDelay = `-${Math.random() * 5}s`;
-        element.style.fontSize = `${Math.random() * 1.5 + 1.5}rem`;
-
-        if (Math.random() > 0.5) {
-            element.classList.add('heart');
-            element.textContent = "❤";
-        } else {
-            element.classList.add('flower');
-            element.textContent = "❀";
-        }
-        heartsBackground.appendChild(element);
-        element.addEventListener('animationend', () => element.remove());
-    }
+    heartsContainer.appendChild(element);
     
-    // Generar elementos iniciales para que el fondo no esté vacío al cargar
-    for (let i = 0; i < 20; i++) {
-        createHeartOrFlower();
-    }
-    setInterval(createHeartOrFlower, 1000); // Crea un corazón o flor cada segundo
+    // Eliminar elemento después de que termine la animación
+    setTimeout(() => {
+      if (element.parentNode) {
+        element.parentNode.removeChild(element);
+      }
+    }, 20000);
+  }
+  
+  // Crear elementos flotantes cada 500ms
+  setInterval(createFloatingElement, 500);
+  
+  // Crear algunos elementos iniciales
+  for (let i = 0; i < 10; i++) {
+    setTimeout(createFloatingElement, i * 200);
+  }
 });
