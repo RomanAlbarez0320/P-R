@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
 }
 
@@ -95,57 +95,20 @@ body {
     padding: 0.5rem;
 }
 
-/* =================== TEXTOS NEÓN =================== */
+/* =================== TEXTOS =================== */
 h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem; /* un poco más grande */
+    font-size: 2.5rem; /* aumentado un poco */
     color: var(--color-pink-neon);
-    text-shadow:
-        0 0 5px var(--color-pink-neon),
-        0 0 10px var(--color-pink-neon),
-        0 0 20px var(--color-pink-neon),
-        0 0 40px var(--color-pink-neon),
-        0 0 60px var(--color-pink-neon),
-        0 0 80px var(--color-pink-neon);
+    text-shadow: 0 0 15px var(--color-pink-neon);
     margin: 0;
-    animation: flicker 2s infinite alternate;
 }
 
 p {
-    font-size: 1rem; /* un poquito más grande */
+    font-size: 1.1rem; /* un poco más grande */
     color: var(--color-pink-neon);
-    text-shadow:
-        0 0 3px var(--color-pink-neon),
-        0 0 6px var(--color-pink-neon),
-        0 0 10px var(--color-pink-neon);
+    text-shadow: 0 0 8px var(--color-pink-neon);
     margin: 0;
-    animation: glow 3s infinite alternate;
-}
-
-/* =================== ANIMACIONES =================== */
-@keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-    }
-    20%, 22%, 24%, 55% {
-        opacity: 0.7;
-    }
-}
-
-@keyframes glow {
-    from {
-        text-shadow:
-            0 0 3px var(--color-pink-neon),
-            0 0 6px var(--color-pink-neon),
-            0 0 10px var(--color-pink-neon);
-    }
-    to {
-        text-shadow:
-            0 0 8px var(--color-pink-neon),
-            0 0 16px var(--color-pink-neon),
-            0 0 24px var(--color-pink-neon),
-            0 0 32px var(--color-pink-neon);
-    }
 }
 
 /* =================== VIDEO =================== */
@@ -169,3 +132,4 @@ p {
     h1 { font-size: 1.8rem; }
     p { font-size: 0.9rem; }
 }
+
