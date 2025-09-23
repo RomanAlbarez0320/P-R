@@ -10,18 +10,20 @@
 /* =================== BODY =================== */
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background: var(--color-black);
     font-family: 'Playfair Display', serif;
     color: var(--color-white);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* ✅ ahora inicia arriba */
+    align-items: center; /* ✅ centrado vertical y horizontal */
+    flex-direction: column;
     position: relative;
     z-index: 0;
     overflow-x: hidden;
-    overflow-y: auto; /* ✅ permite scroll si es necesario */
+    overflow-y: auto;
+    text-align: center;
 }
 
 /* =================== FONDOS =================== */
@@ -104,11 +106,11 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 600px;
     padding: 1rem;
     box-sizing: border-box;
     z-index: 5;
-    text-align: center;
-    gap: 1rem; /* ✅ espacio más compacto */
+    gap: 1rem;
 }
 
 /* =================== TEXTOS =================== */
@@ -120,7 +122,7 @@ body {
 
 h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--color-white);
     margin: 0.5rem 0;
     animation: textGlowPulse 4s infinite alternate ease-in-out;
@@ -133,7 +135,7 @@ h1 {
 
 p {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.4;
     margin: 0.5rem 0;
     color: var(--color-white);
@@ -144,35 +146,19 @@ p {
 .video-container {
     position: relative;
     width: 100%;
-    max-width: 500px;  /* ✅ un poco más angosto */
-    height: 55vh;      /* ✅ más compacto */
+    max-width: 500px;
+    aspect-ratio: 16 / 9;   /* ✅ mantiene proporción correcta */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 30px var(--color-pink-neon);
 }
 
 .video-container iframe {
-    position: absolute;
-    top: 0; left: 0;
     width: 100%;
     height: 100%;
     border: none;
     object-fit: cover;
-    transform: scale(1.2); /* ✅ rellena sin cortar demasiado */
-}
-
-/* =================== CONTENIDO =================== */
-.main-content {
-    padding: 0.5rem;   /* ✅ menos espacio arriba/abajo */
-    gap: 0.5rem;       /* ✅ compacta los elementos */
-}
-
-h1 {
-    font-size: 2.2rem; /* ✅ título un poco más chico */
-}
-
-p {
-    font-size: 0.9rem; /* ✅ texto más compacto */
+    transform: none; /* ❌ quitamos el scale que cortaba el video */
 }
 
 /* =================== RESPONSIVE =================== */
@@ -181,11 +167,10 @@ p {
     p { font-size: 0.8rem; }
     .video-container {
         width: 95vw;
-        height: 50vh;  /* ✅ aún más chico en móvil */
+        max-width: none;
         border-radius: 8px;
     }
 }
-
 
 /* =================== ESTRELLA FUGAZ =================== */
 .shooting-star {
@@ -203,4 +188,3 @@ p {
     10% { opacity: 1; }
     100% { transform: translateX(200px) translateY(200px) scale(1.2); opacity: 0; }
 }
-
