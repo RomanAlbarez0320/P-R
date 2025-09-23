@@ -9,8 +9,7 @@
 
 body {
     margin: 0;
-    overflow: hidden; 
-    height: 100vh;
+    height: 100vh; /* ✅ toda la pantalla */
     width: 100vw;
     background: var(--color-black);
     font-family: 'Playfair Display', serif;
@@ -20,9 +19,10 @@ body {
     align-items: center;
     position: relative;
     z-index: 0;
+    overflow: hidden; /* ✅ sin scroll */
 }
 
-/* EFECTOS DE FONDO CÓSMICO */
+/* 🌌 Fondos */
 .stars, .twinkling, .clouds {
     position: fixed;
     top: 0; left: 0;
@@ -49,7 +49,7 @@ body {
     animation: move-clouds-back 200s linear infinite;
 }
 
-/* 💖✨ CORAZONES Y FLORES FLOTANTES */
+/* 💖 Corazones y flores */
 .hearts-background {
     position: fixed;
     top: 0; left: 0;
@@ -86,7 +86,6 @@ body {
     100% { transform: translateY(-10vh) scale(1.5) rotate(720deg); opacity: 0; }
 }
 
-/* ANIMACIONES DE FONDO PRINCIPALES */
 @keyframes move-twink-back {
     from { background-position: 0 0; }
     to { background-position: -10000px 5000px; }
@@ -97,37 +96,33 @@ body {
     to { background-position: 10000px 0; }
 }
 
-/* CONTENIDO PRINCIPAL Y DISTRIBUCIÓN */
+/* 📦 Contenido principal */
 .main-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* distribución vertical */
+    justify-content: space-between; /* ✅ arriba - centro - abajo */
     align-items: center;
-    width: 95%;
-    max-width: 1200px;
-    height: 95vh; /* ocupa casi toda la pantalla */
+    height: 100vh; /* ✅ ocupa toda la pantalla */
     padding: 1rem;
     box-sizing: border-box;
     z-index: 5;
+    text-align: center;
 }
 
-/* TEXTOS */
+/* ✨ Textos */
 .text-container {
-    margin: 0;
-    padding: 0 1rem;
-    text-align: center;
     text-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px var(--color-pink-neon);
 }
 
 h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 7rem;
+    font-size: 3rem; /* ✅ reducido para que quepa */
     color: var(--color-white);
+    margin: 0.5rem 0;
     text-shadow: 0 0 20px var(--color-white),
                  0 0 40px var(--color-pink-neon),
                  0 0 80px var(--color-pink-neon),
                  0 0 120px rgba(255,0,127,0.8);
-    margin: 0;
     animation: textGlowPulse 4s infinite alternate ease-in-out;
 }
 
@@ -138,85 +133,56 @@ h1 {
 
 p {
     font-family: 'Playfair Display', serif;
-    font-size: 2.3rem;
+    font-size: 1.2rem; /* ✅ más compacto */
     line-height: 1.4;
+    margin: 0.5rem 0;
     color: var(--color-white); 
     text-shadow: 0 0 10px rgba(0,0,0,0.9);
 }
 
-/* VIDEO O IFRAME */
-.video-container {
-    flex-grow: 0; 
-    margin: 1rem 0;
-    box-shadow: 0 0 50px var(--color-pink-neon), 0 0 100px rgba(255,0,127,0.7);
-    border-radius: 20px;
-    overflow: hidden;
-    animation: pulseGlow 5s infinite alternate ease-in-out;
-    display: inline-block;
-    transform: scale(1.25);      /* ✅ ahora solo 25% más grande */
-    transform-origin: center;    /* mantiene el centro fijo */
+/* 📌 Footer */
+footer.text-container {
+    font-size: 1rem;
+    margin: 0.5rem 0 1rem 0;
 }
 
-/* Ajuste del video */
-.video-container video,
+/* 🎥 Video */
+.video-container {
+    position: relative;
+    width: 60vw; /* ✅ más pequeño */
+    max-width: 300px; /* ✅ límite en PC */
+    aspect-ratio: 9/16; /* ✅ proporción vertical */
+    margin: 1rem 0;
+    box-shadow: 0 0 30px var(--color-pink-neon);
+    border-radius: 15px;
+    overflow: hidden;
+    animation: pulseGlow 5s infinite alternate ease-in-out;
+}
+
 .video-container iframe {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    display: block;
 }
-
-
 
 @keyframes pulseGlow {
-    0% { box-shadow: 0 0 50px var(--color-pink-neon), 0 0 100px rgba(255,0,127,0.7); }
-    100% { box-shadow: 0 0 70px var(--color-pink-neon), 0 0 140px rgba(255,0,127,0.9); }
+    0% { box-shadow: 0 0 30px var(--color-pink-neon), 0 0 80px rgba(255,0,127,0.7); }
+    100% { box-shadow: 0 0 50px var(--color-pink-neon), 0 0 120px rgba(255,0,127,0.9); }
 }
 
-/* === AJUSTES RESPONSIVOS === */
+/* 📱 Responsive */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 4rem; /* reduce tamaño del título */
-    }
-
-    p {
-        font-size: 1.5rem; /* texto más pequeño */
-    }
-
-    .video-container {
-        transform: scale(1);   /* en móviles, vuelve al tamaño normal */
-        width: 90vw;           /* ocupa casi todo el ancho de la pantalla */
-        max-height: 50vh;      /* no se pasa de la mitad de la altura */
-    }
-
-    .video-container video,
-    .video-container iframe {
-        width: 100%;
-        height: auto;
-    }
-
-    .main-content {
-        height: auto;          /* deja que crezca según el contenido */
-        padding: 0.5rem;
-    }
+    h1 { font-size: 2.5rem; }
+    p { font-size: 1rem; }
+    .video-container { width: 70vw; max-width: 220px; }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 3rem;
-    }
-
-    p {
-        font-size: 1.2rem;
-    }
-
-    .video-container {
-        width: 95vw;
-        max-height: 40vh; /* en celulares más chicos */
-    }
+    h1 { font-size: 2rem; }
+    p { font-size: 0.9rem; }
+    .video-container { width: 75vw; max-width: 180px; }
 }
 
-/* ESTRELLA FUGAS - AÑADE ESTO A TU CSS SI NO LO TIENES */
+/* 🌠 Estrella fugaz */
 .shooting-star {
     background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--color-white));
     position: absolute;
@@ -224,8 +190,9 @@ p {
     animation: shoot 2s forwards ease-out;
     opacity: 0;
     filter: drop-shadow(0 0 5px var(--color-white));
-    z-index: 2; /* Asegúrate de que esté por encima de stars pero debajo de clouds/twinkling si quieres */
+    z-index: 2;
 }
+
 @keyframes shoot {
     0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0; }
     10% { opacity: 1; }
