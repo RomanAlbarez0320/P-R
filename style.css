@@ -7,21 +7,22 @@
   --color-black: #000000;
 }
 
-/* ======== GLOBAL ======== */
+/* ======== RESET COMPLETO ======== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background: var(--color-black);
 }
 
 body {
-  background: var(--color-black);
   font-family: 'Playfair Display', serif;
   color: var(--color-white);
   display: flex;
@@ -29,6 +30,8 @@ body {
   align-items: center;
   position: relative;
   z-index: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* ======== EFECTOS DE FONDO CÓSMICO ======== */
@@ -120,15 +123,17 @@ body {
   height: 100vh;
   padding: 1rem;
   z-index: 5;
+  position: relative;
 }
 
 /* ======== TEXTOS ======== */
 .text-container {
   margin: 0;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
   text-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px var(--color-pink-neon);
   z-index: 6;
+  flex-shrink: 0;
 }
 
 h1 {
@@ -170,91 +175,142 @@ p {
   margin: 0;
 }
 
-/* ======== VIDEO CONTAINER - OPTIMIZADO ======== */
-.video-container {
+/* ======== CONTENEDOR DE VIDEO MEJORADO ======== */
+.video-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 6;
-  flex: 1;
   overflow: hidden;
+  max-height: 70vh;
+  margin: 0.5rem 0;
 }
 
-/* Iframe del video - eliminando bordes */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Iframe del video - SIN BORDES NEGROS */
 .video-container iframe {
   width: 100%;
   height: 100%;
   border: none;
-  object-fit: cover;
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  background: transparent;
+  object-fit: fill;
+  transform: scale(1.02); /* Elimina bordes pequeños */
 }
 
-/* Marco de neón animado - solo alrededor del contenido visible */
+/* Marco de neón animado - MEJORADO */
 .video-container::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 4px solid var(--color-pink-neon);
-  box-shadow: 0 0 30px var(--color-pink-neon), 0 0 60px rgba(255,0,127,0.7);
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 3px solid var(--color-pink-neon);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px var(--color-pink-neon),
+    0 0 40px rgba(255,0,127,0.7),
+    inset 0 0 20px rgba(255,0,127,0.3);
   animation: neonPulse 2s infinite alternate;
   pointer-events: none;
   z-index: 7;
-  border-radius: 0;
 }
 
 @keyframes neonPulse {
   0% {
-    box-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px rgba(255,0,127,0.5);
+    box-shadow: 
+      0 0 15px var(--color-pink-neon),
+      0 0 30px rgba(255,0,127,0.5),
+      inset 0 0 15px rgba(255,0,127,0.2);
+    border-width: 2px;
   }
   100% {
-    box-shadow: 0 0 50px var(--color-pink-neon), 0 0 100px rgba(255,0,127,0.8);
+    box-shadow: 
+      0 0 25px var(--color-pink-neon),
+      0 0 50px rgba(255,0,127,0.8),
+      inset 0 0 25px rgba(255,0,127,0.4);
+    border-width: 3px;
   }
 }
 
-/* ======== RESPONSIVE ======== */
+/* ======== RESPONSIVE MEJORADO ======== */
 @media (max-width: 1024px) {
   h1 { font-size: 5.5rem; }
   p  { font-size: 2rem; }
+  .video-container { max-width: 380px; }
 }
 
 @media (max-width: 768px) {
   h1 { font-size: 4rem; }
   p  { font-size: 1.6rem; }
-  .main-content { padding: 0.5rem; }
+  .video-container { 
+    max-width: 340px;
+    max-height: 65vh;
+  }
+  .main-content { padding: 0.75rem; }
+  .text-container { padding: 0.25rem 0.5rem; }
 }
 
 @media (max-width: 480px) {
   h1 { font-size: 3rem; }
   p  { font-size: 1.2rem; }
-  .main-content { padding: 0.25rem; }
+  .video-container { 
+    max-width: 300px;
+    max-height: 60vh;
+  }
+  .main-content { padding: 0.5rem; }
+  .text-container { padding: 0.1rem 0.25rem; }
 }
 
 /* Orientación vertical (teléfono) */
 @media (max-height: 700px) and (orientation: portrait) {
-  .text-container {
-    padding: 0.25rem;
-  }
+  .text-container { padding: 0.1rem; }
   h1 { font-size: 2.5rem; }
   p { font-size: 1rem; }
+  .video-container { 
+    max-height: 55vh;
+    max-width: 280px;
+  }
 }
 
 /* Orientación horizontal (teléfono) */
 @media (max-height: 500px) and (orientation: landscape) {
-  .text-container {
-    padding: 0.1rem;
+  .text-container { padding: 0.05rem; }
+  h1 { font-size: 2rem; }
+  p { font-size: 0.9rem; }
+  .video-container { 
+    max-height: 80vh;
+    max-width: 250px;
   }
+  .video-wrapper { max-height: 85vh; }
+}
+
+/* Para pantallas muy altas */
+@media (min-height: 1000px) {
+  .video-container { max-height: 60vh; }
+  h1 { font-size: 8rem; }
+  p { font-size: 2.8rem; }
+}
   h1 { font-size: 2rem; }
   p { font-size: 0.9rem; }
 }
+
