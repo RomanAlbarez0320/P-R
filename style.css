@@ -144,8 +144,8 @@ p {
 .video-container {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    height: 65vh; /* ✅ ocupa casi toda la altura */
+    max-width: 500px;  /* ✅ un poco más angosto */
+    height: 55vh;      /* ✅ más compacto */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 30px var(--color-pink-neon);
@@ -157,31 +157,35 @@ p {
     width: 100%;
     height: 100%;
     border: none;
-    object-fit: cover;  /* ✅ hace que el video se comporte como la imagen */
-    transform: scale(1.3); /* ✅ rellena y corta bordes negros */
+    object-fit: cover;
+    transform: scale(1.2); /* ✅ rellena sin cortar demasiado */
+}
+
+/* =================== CONTENIDO =================== */
+.main-content {
+    padding: 0.5rem;   /* ✅ menos espacio arriba/abajo */
+    gap: 0.5rem;       /* ✅ compacta los elementos */
+}
+
+h1 {
+    font-size: 2.2rem; /* ✅ título un poco más chico */
+}
+
+p {
+    font-size: 0.9rem; /* ✅ texto más compacto */
 }
 
 /* =================== RESPONSIVE =================== */
-@media (max-width: 768px) {
-    .main-content {
-        padding-top: 1rem;
-        gap: 0.8rem;
+@media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    p { font-size: 0.8rem; }
+    .video-container {
+        width: 95vw;
+        height: 50vh;  /* ✅ aún más chico en móvil */
+        border-radius: 8px;
     }
-    h1 { font-size: 2rem; }
-    p { font-size: 0.95rem; }
-    .video-container { height: 60vh; }
 }
 
-@media (max-width: 480px) {
-    h1 { font-size: 1.8rem; }
-    p { font-size: 0.85rem; }
-    .video-container {
-        width: 100vw;
-        height: 55vh;
-        max-width: none;
-        border-radius: 0; /* ✅ ocupa todo el ancho en móviles */
-    }
-}
 
 /* =================== ESTRELLA FUGAZ =================== */
 .shooting-star {
@@ -199,3 +203,4 @@ p {
     10% { opacity: 1; }
     100% { transform: translateX(200px) translateY(200px) scale(1.2); opacity: 0; }
 }
+
