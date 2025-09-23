@@ -7,6 +7,7 @@
     --color-black: #000000;
 }
 
+/* =================== BODY =================== */
 body {
     margin: 0;
     height: 100vh; /* ✅ toda la pantalla */
@@ -22,7 +23,7 @@ body {
     overflow: hidden; /* ✅ sin scroll */
 }
 
-/* 🌌 Fondos */
+/* =================== FONDOS =================== */
 .stars, .twinkling, .clouds {
     position: fixed;
     top: 0; left: 0;
@@ -49,7 +50,7 @@ body {
     animation: move-clouds-back 200s linear infinite;
 }
 
-/* 💖 Corazones y flores */
+/* =================== CORAZONES Y FLORES =================== */
 .hearts-background {
     position: fixed;
     top: 0; left: 0;
@@ -96,11 +97,11 @@ body {
     to { background-position: 10000px 0; }
 }
 
-/* 📦 Contenido principal */
+/* =================== CONTENIDO PRINCIPAL =================== */
 .main-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* ✅ arriba - centro - abajo */
+    justify-content: space-between; /* ✅ arriba-medio-abajo */
     align-items: center;
     height: 100vh; /* ✅ ocupa toda la pantalla */
     padding: 1rem;
@@ -109,49 +110,41 @@ body {
     text-align: center;
 }
 
-/* ✨ Textos */
+/* =================== TEXTOS =================== */
 .text-container {
+    margin: 0;
+    padding: 0 1rem;
     text-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px var(--color-pink-neon);
 }
 
 h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 3rem; /* ✅ reducido para que quepa */
+    font-size: 3rem;
     color: var(--color-white);
     margin: 0.5rem 0;
-    text-shadow: 0 0 20px var(--color-white),
-                 0 0 40px var(--color-pink-neon),
-                 0 0 80px var(--color-pink-neon),
-                 0 0 120px rgba(255,0,127,0.8);
     animation: textGlowPulse 4s infinite alternate ease-in-out;
 }
 
 @keyframes textGlowPulse {
-    0% { text-shadow: 0 0 20px var(--color-white), 0 0 40px var(--color-pink-neon), 0 0 80px var(--color-pink-neon), 0 0 120px rgba(255,0,127,0.8); }
-    100% { text-shadow: 0 0 25px var(--color-white), 0 0 50px var(--color-pink-neon), 0 0 100px var(--color-pink-neon), 0 0 150px rgba(255,0,127,0.95); }
+    0% { text-shadow: 0 0 20px var(--color-white), 0 0 40px var(--color-pink-neon), 0 0 80px var(--color-pink-neon); }
+    100% { text-shadow: 0 0 25px var(--color-white), 0 0 50px var(--color-pink-neon), 0 0 100px var(--color-pink-neon); }
 }
 
 p {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; /* ✅ más compacto */
+    font-size: 1.2rem;
     line-height: 1.4;
     margin: 0.5rem 0;
-    color: var(--color-white); 
+    color: var(--color-white);
     text-shadow: 0 0 10px rgba(0,0,0,0.9);
 }
 
-/* 📌 Footer */
-footer.text-container {
-    font-size: 1rem;
-    margin: 0.5rem 0 1rem 0;
-}
-
-/* 🎥 Video */
+/* =================== VIDEO =================== */
 .video-container {
     position: relative;
-    width: 60vw; /* ✅ más pequeño */
-    max-width: 300px; /* ✅ límite en PC */
-    aspect-ratio: 9/16; /* ✅ proporción vertical */
+    width: 85vw;          /* ✅ se adapta en móviles */
+    max-width: 600px;     /* ✅ límite en pantallas grandes */
+    aspect-ratio: 16/9;   /* ✅ proporción correcta */
     margin: 1rem 0;
     box-shadow: 0 0 30px var(--color-pink-neon);
     border-radius: 15px;
@@ -162,27 +155,34 @@ footer.text-container {
 .video-container iframe {
     width: 100%;
     height: 100%;
+    border: none;
 }
 
 @keyframes pulseGlow {
-    0% { box-shadow: 0 0 30px var(--color-pink-neon), 0 0 80px rgba(255,0,127,0.7); }
-    100% { box-shadow: 0 0 50px var(--color-pink-neon), 0 0 120px rgba(255,0,127,0.9); }
+    0% { box-shadow: 0 0 15px var(--color-pink-neon); }
+    100% { box-shadow: 0 0 40px var(--color-pink-neon); }
 }
 
-/* 📱 Responsive */
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1024px) {
+    h1 { font-size: 2.8rem; }
+    p { font-size: 1.1rem; }
+    .video-container { width: 80vw; max-width: 500px; }
+}
+
 @media (max-width: 768px) {
     h1 { font-size: 2.5rem; }
     p { font-size: 1rem; }
-    .video-container { width: 70vw; max-width: 220px; }
+    .video-container { width: 90vw; max-width: 400px; }
 }
 
 @media (max-width: 480px) {
     h1 { font-size: 2rem; }
     p { font-size: 0.9rem; }
-    .video-container { width: 75vw; max-width: 180px; }
+    .video-container { width: 95vw; max-width: 340px; }
 }
 
-/* 🌠 Estrella fugaz */
+/* =================== ESTRELLA FUGAZ =================== */
 .shooting-star {
     background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--color-white));
     position: absolute;
@@ -198,3 +198,4 @@ footer.text-container {
     10% { opacity: 1; }
     100% { transform: translateX(200px) translateY(200px) scale(1.2); opacity: 0; }
 }
+
