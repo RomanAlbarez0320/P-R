@@ -10,7 +10,7 @@
 /* =================== BODY =================== */
 body {
     margin: 0;
-    height: 100vh; /* ✅ toda la pantalla */
+    height: 100vh; 
     width: 100vw;
     background: var(--color-black);
     font-family: 'Playfair Display', serif;
@@ -20,7 +20,7 @@ body {
     align-items: center;
     position: relative;
     z-index: 0;
-    overflow: hidden; /* ✅ sin scroll */
+    overflow: hidden;
 }
 
 /* =================== FONDOS =================== */
@@ -101,9 +101,9 @@ body {
 .main-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* ✅ arriba-medio-abajo */
+    justify-content: space-between; 
     align-items: center;
-    height: 100vh; /* ✅ ocupa toda la pantalla */
+    height: 100vh;
     padding: 1rem;
     box-sizing: border-box;
     z-index: 5;
@@ -142,20 +142,23 @@ p {
 /* =================== VIDEO =================== */
 .video-container {
     position: relative;
-    width: 85vw;          /* ✅ se adapta en móviles */
-    max-width: 600px;     /* ✅ límite en pantallas grandes */
-    aspect-ratio: 16/9;   /* ✅ proporción correcta */
-    margin: 1rem 0;
-    box-shadow: 0 0 30px var(--color-pink-neon);
+    width: 100%;
+    max-width: 600px;
+    height: 60vh; 
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 0 30px var(--color-pink-neon);
     animation: pulseGlow 5s infinite alternate ease-in-out;
 }
 
 .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
     border: none;
+    transform: scale(1.2);  /* ✅ llena sin barras negras */
+    object-fit: cover;
 }
 
 @keyframes pulseGlow {
@@ -167,19 +170,29 @@ p {
 @media (max-width: 1024px) {
     h1 { font-size: 2.8rem; }
     p { font-size: 1.1rem; }
-    .video-container { width: 80vw; max-width: 500px; }
+    .video-container { height: 55vh; }
 }
 
 @media (max-width: 768px) {
+    .main-content {
+        justify-content: flex-start;  /* ✅ sube el contenido */
+        padding-top: 2rem;
+        height: auto;
+    }
     h1 { font-size: 2.5rem; }
     p { font-size: 1rem; }
-    .video-container { width: 90vw; max-width: 400px; }
+    .video-container { height: 50vh; }
 }
 
 @media (max-width: 480px) {
     h1 { font-size: 2rem; }
     p { font-size: 0.9rem; }
-    .video-container { width: 95vw; max-width: 340px; }
+    .video-container {
+        width: 100vw;
+        height: 55vh;
+        max-width: none;
+        border-radius: 0; /* ✅ en móviles ocupa todo */
+    }
 }
 
 /* =================== ESTRELLA FUGAZ =================== */
@@ -198,4 +211,3 @@ p {
     10% { opacity: 1; }
     100% { transform: translateX(200px) translateY(200px) scale(1.2); opacity: 0; }
 }
-
