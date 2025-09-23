@@ -1,233 +1,260 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap');
 
 :root {
-    --color-pink-neon: #ff007f;
-    --color-pink-soft: #ffb6c1;
-    --color-white: #ffffff;
-    --color-black: #000000;
+  --color-pink-neon: #ff007f;
+  --color-pink-soft: #ffb6c1;
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+/* ======== GLOBAL ======== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 body {
-    margin: 0;
-    overflow: hidden; 
-    height: 100vh;
-    width: 100vw;
-    background: var(--color-black);
-    font-family: 'Playfair Display', serif;
-    color: var(--color-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 0;
+  background: var(--color-black);
+  font-family: 'Playfair Display', serif;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
 }
 
-/* EFECTOS DE FONDO CÓSMICO */
+/* ======== EFECTOS DE FONDO CÓSMICO ======== */
 .stars, .twinkling, .clouds {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    display: block;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
 }
 
 .stars {
-    background: var(--color-black) url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
-    z-index: 1;
+  background: var(--color-black) url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+  z-index: 1;
 }
 
 .twinkling {
-    background: transparent url('https://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
-    z-index: 2;
-    animation: move-twink-back 200s linear infinite;
+  background: transparent url('https://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
+  z-index: 2;
+  animation: move-twink-back 200s linear infinite;
 }
 
 .clouds {
-    background: transparent url('https://www.script-tutorials.com/demos/360/images/clouds3.png') repeat top center;
-    z-index: 3;
-    opacity: 0.6;
-    animation: move-clouds-back 200s linear infinite;
+  background: transparent url('https://www.script-tutorials.com/demos/360/images/clouds3.png') repeat top center;
+  z-index: 3;
+  opacity: 0.6;
+  animation: move-clouds-back 200s linear infinite;
 }
 
-/* 💖✨ CORAZONES Y FLORES FLOTANTES */
+/* ======== CORAZONES Y FLORES FLOTANTES ======== */
 .hearts-background {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 4;
 }
 
 .heart, .flower {
-    position: absolute;
-    animation: floatElements 10s linear infinite;
-    opacity: 0.8;
-    transform-origin: center;
-    pointer-events: none;
+  position: absolute;
+  animation: floatElements 10s linear infinite;
+  opacity: 0.85;
+  transform-origin: center;
+  pointer-events: none;
 }
 
 .heart {
-    color: #ff66b2;
-    font-size: 1.8rem;
-    filter: drop-shadow(0 0 5px rgba(255,102,178,0.7));
+  color: #ff66b2;
+  font-size: 1.6rem;
+  filter: drop-shadow(0 0 6px rgba(255,102,178,0.75));
 }
 
 .flower {
-    color: #ffd1dc;
-    font-size: 2.2rem;
-    filter: drop-shadow(0 0 5px rgba(255,209,220,0.7));
+  color: #ffd1dc;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 6px rgba(255,209,220,0.75));
 }
 
 @keyframes floatElements {
-    0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(-10vh) scale(1.5) rotate(720deg); opacity: 0; }
+  0% { transform: translateY(100vh) scale(0.6) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.1) rotate(540deg); opacity: 0; }
 }
 
-/* ANIMACIONES DE FONDO PRINCIPALES */
+/* ======== ANIMACIONES DE FONDO ======== */
 @keyframes move-twink-back {
-    from { background-position: 0 0; }
-    to { background-position: -10000px 5000px; }
+  from { background-position: 0 0; }
+  to   { background-position: -10000px 5000px; }
 }
 
 @keyframes move-clouds-back {
-    from { background-position: 0 0; }
-    to { background-position: 10000px 0; }
+  from { background-position: 0 0; }
+  to   { background-position: 10000px 0; }
 }
 
-/* CONTENIDO PRINCIPAL Y DISTRIBUCIÓN */
+/* ======== CONTENIDO PRINCIPAL ======== */
 .main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* distribución vertical */
-    align-items: center;
-    width: 95%;
-    max-width: 1200px;
-    height: 95vh; /* ocupa casi toda la pantalla */
-    padding: 1rem;
-    box-sizing: border-box;
-    z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+  z-index: 5;
 }
 
-/* TEXTOS */
+/* ======== TEXTOS ======== */
 .text-container {
-    margin: 0;
-    padding: 0 1rem;
-    text-align: center;
-    text-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px var(--color-pink-neon);
+  margin: 0;
+  padding: 0 1rem;
+  text-align: center;
+  text-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px var(--color-pink-neon);
+  z-index: 6;
 }
 
 h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 7rem;
-    color: var(--color-white);
-    text-shadow: 0 0 20px var(--color-white),
-                 0 0 40px var(--color-pink-neon),
-                 0 0 80px var(--color-pink-neon),
-                 0 0 120px rgba(255,0,127,0.8);
-    margin: 0;
-    animation: textGlowPulse 4s infinite alternate ease-in-out;
+  font-family: 'Dancing Script', cursive;
+  font-size: 7rem;
+  color: var(--color-white);
+  text-shadow:
+    0 0 20px var(--color-white),
+    0 0 40px var(--color-pink-neon),
+    0 0 80px var(--color-pink-neon),
+    0 0 120px rgba(255,0,127,0.8);
+  margin: 0;
+  animation: textGlowPulse 4s infinite alternate ease-in-out;
 }
 
 @keyframes textGlowPulse {
-    0% { text-shadow: 0 0 20px var(--color-white), 0 0 40px var(--color-pink-neon), 0 0 80px var(--color-pink-neon), 0 0 120px rgba(255,0,127,0.8); }
-    100% { text-shadow: 0 0 25px var(--color-white), 0 0 50px var(--color-pink-neon), 0 0 100px var(--color-pink-neon), 0 0 150px rgba(255,0,127,0.95); }
+  0% {
+    text-shadow:
+      0 0 20px var(--color-white),
+      0 0 40px var(--color-pink-neon),
+      0 0 80px var(--color-pink-neon),
+      0 0 120px rgba(255,0,127,0.8);
+  }
+  100% {
+    text-shadow:
+      0 0 25px var(--color-white),
+      0 0 50px var(--color-pink-neon),
+      0 0 100px var(--color-pink-neon),
+      0 0 150px rgba(255,0,127,0.95);
+  }
 }
 
 p {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.3rem;
-    line-height: 1.4;
-    color: var(--color-white); 
-    text-shadow: 0 0 10px rgba(0,0,0,0.9);
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3rem;
+  line-height: 1.4;
+  color: var(--color-white);
+  text-shadow: 0 0 10px rgba(0,0,0,0.9);
+  margin: 0;
 }
 
-/* VIDEO O IFRAME */
+/* ======== VIDEO CONTAINER - OPTIMIZADO ======== */
 .video-container {
-    flex-grow: 0; 
-    margin: 1rem 0;
-    box-shadow: 0 0 50px var(--color-pink-neon), 0 0 100px rgba(255,0,127,0.7);
-    border-radius: 20px;
-    overflow: hidden;
-    animation: pulseGlow 5s infinite alternate ease-in-out;
-    display: inline-block;
-    transform: scale(1.25);      /* ✅ ahora solo 25% más grande */
-    transform-origin: center;    /* mantiene el centro fijo */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  flex: 1;
+  overflow: hidden;
 }
 
-/* Ajuste del video */
-.video-container video,
+/* Iframe del video - eliminando bordes */
 .video-container iframe {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-
-
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 50px var(--color-pink-neon), 0 0 100px rgba(255,0,127,0.7); }
-    100% { box-shadow: 0 0 70px var(--color-pink-neon), 0 0 140px rgba(255,0,127,0.9); }
+/* Marco de neón animado - solo alrededor del contenido visible */
+.video-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 4px solid var(--color-pink-neon);
+  box-shadow: 0 0 30px var(--color-pink-neon), 0 0 60px rgba(255,0,127,0.7);
+  animation: neonPulse 2s infinite alternate;
+  pointer-events: none;
+  z-index: 7;
+  border-radius: 0;
 }
 
-/* === AJUSTES RESPONSIVOS === */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px rgba(255,0,127,0.5);
+  }
+  100% {
+    box-shadow: 0 0 50px var(--color-pink-neon), 0 0 100px rgba(255,0,127,0.8);
+  }
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 1024px) {
+  h1 { font-size: 5.5rem; }
+  p  { font-size: 2rem; }
+}
+
 @media (max-width: 768px) {
-    h1 {
-        font-size: 4rem; /* reduce tamaño del título */
-    }
-
-    p {
-        font-size: 1.5rem; /* texto más pequeño */
-    }
-
-    .video-container {
-        transform: scale(1);   /* en móviles, vuelve al tamaño normal */
-        width: 90vw;           /* ocupa casi todo el ancho de la pantalla */
-        max-height: 50vh;      /* no se pasa de la mitad de la altura */
-    }
-
-    .video-container video,
-    .video-container iframe {
-        width: 100%;
-        height: auto;
-    }
-
-    .main-content {
-        height: auto;          /* deja que crezca según el contenido */
-        padding: 0.5rem;
-    }
+  h1 { font-size: 4rem; }
+  p  { font-size: 1.6rem; }
+  .main-content { padding: 0.5rem; }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 3rem;
-    }
-
-    p {
-        font-size: 1.2rem;
-    }
-
-    .video-container {
-        width: 95vw;
-        max-height: 40vh; /* en celulares más chicos */
-    }
+  h1 { font-size: 3rem; }
+  p  { font-size: 1.2rem; }
+  .main-content { padding: 0.25rem; }
 }
 
-/* ESTRELLA FUGAS - AÑADE ESTO A TU CSS SI NO LO TIENES */
-.shooting-star {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--color-white));
-    position: absolute;
-    border-radius: 50%;
-    animation: shoot 2s forwards ease-out;
-    opacity: 0;
-    filter: drop-shadow(0 0 5px var(--color-white));
-    z-index: 2; /* Asegúrate de que esté por encima de stars pero debajo de clouds/twinkling si quieres */
+/* Orientación vertical (teléfono) */
+@media (max-height: 700px) and (orientation: portrait) {
+  .text-container {
+    padding: 0.25rem;
+  }
+  h1 { font-size: 2.5rem; }
+  p { font-size: 1rem; }
 }
-@keyframes shoot {
-    0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0; }
-    10% { opacity: 1; }
-    100% { transform: translateX(200px) translateY(200px) scale(1.2); opacity: 0; }
+
+/* Orientación horizontal (teléfono) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .text-container {
+    padding: 0.1rem;
+  }
+  h1 { font-size: 2rem; }
+  p { font-size: 0.9rem; }
 }
