@@ -7,7 +7,7 @@
   --color-black: #000000;
 }
 
-/* ======== RESET COMPLETO ======== */
+/* ======== RESET TOTAL PARA MÓVIL ======== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,6 +20,8 @@ html, body {
   width: 100%;
   overflow: hidden;
   background: var(--color-black);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -28,13 +30,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed; /* Evita scroll en móvil */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
-  padding: 0;
-  margin: 0;
 }
 
-/* ======== EFECTOS DE FONDO CÓSMICO ======== */
+/* ======== FONDOS MÁS SUAVES PARA NO INTERFERIR CON TEXTO ======== */
 .stars, .twinkling, .clouds {
   position: fixed;
   top: 0;
@@ -46,24 +50,25 @@ body {
 }
 
 .stars {
-  background: var(--color-black) url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+  background: var(--color-black);
   z-index: 1;
 }
 
 .twinkling {
-  background: transparent url('https://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
+  background: transparent;
   z-index: 2;
   animation: move-twink-back 200s linear infinite;
+  opacity: 0.3; /* Reducido para mejor legibilidad */
 }
 
 .clouds {
-  background: transparent url('https://www.script-tutorials.com/demos/360/images/clouds3.png') repeat top center;
+  background: transparent;
   z-index: 3;
-  opacity: 0.6;
+  opacity: 0.2; /* Muy reducido */
   animation: move-clouds-back 200s linear infinite;
 }
 
-/* ======== CORAZONES Y FLORES FLOTANTES ======== */
+/* ======== CORAZONES MÁS DISCRETOS ======== */
 .hearts-background {
   position: fixed;
   top: 0;
@@ -73,47 +78,37 @@ body {
   pointer-events: none;
   overflow: hidden;
   z-index: 4;
+  opacity: 0.6; /* Reducido para no molestar al texto */
 }
 
 .heart, .flower {
   position: absolute;
   animation: floatElements 10s linear infinite;
-  opacity: 0.85;
+  opacity: 0.7;
   transform-origin: center;
   pointer-events: none;
 }
 
 .heart {
   color: #ff66b2;
-  font-size: 1.6rem;
-  filter: drop-shadow(0 0 6px rgba(255,102,178,0.75));
+  font-size: 1.2rem; /* Más pequeño */
+  filter: drop-shadow(0 0 3px rgba(255,102,178,0.5));
 }
 
 .flower {
   color: #ffd1dc;
-  font-size: 2rem;
-  filter: drop-shadow(0 0 6px rgba(255,209,220,0.75));
+  font-size: 1.5rem; /* Más pequeño */
+  filter: drop-shadow(0 0 3px rgba(255,209,220,0.5));
 }
 
 @keyframes floatElements {
   0% { transform: translateY(100vh) scale(0.6) rotate(0deg); opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1.1) rotate(540deg); opacity: 0; }
+  20% { opacity: 0.7; }
+  80% { opacity: 0.7; }
+  100% { transform: translateY(-10vh) scale(1) rotate(540deg); opacity: 0; }
 }
 
-/* ======== ANIMACIONES DE FONDO ======== */
-@keyframes move-twink-back {
-  from { background-position: 0 0; }
-  to   { background-position: -10000px 5000px; }
-}
-
-@keyframes move-clouds-back {
-  from { background-position: 0 0; }
-  to   { background-position: 10000px 0; }
-}
-
-/* ======== CONTENIDO PRINCIPAL ======== */
+/* ======== CONTENIDO PRINCIPAL OPTIMIZADO MÓVIL ======== */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -121,61 +116,65 @@ body {
   align-items: center;
   width: 100%;
   height: 100vh;
-  padding: 1rem;
+  padding: 5vh 1rem; /* Padding vertical generoso */
   z-index: 5;
   position: relative;
 }
 
-/* ======== TEXTOS ======== */
+/* ======== TEXTO OPTIMIZADO PARA MÓVIL ======== */
 .text-container {
   margin: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   text-align: center;
-  text-shadow: 0 0 20px var(--color-pink-neon), 0 0 40px var(--color-pink-neon);
   z-index: 6;
   flex-shrink: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Fondo semitransparente para mejor legibilidad */
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 h1 {
   font-family: 'Dancing Script', cursive;
-  font-size: 7rem;
   color: var(--color-white);
   text-shadow:
-    0 0 20px var(--color-white),
-    0 0 40px var(--color-pink-neon),
-    0 0 80px var(--color-pink-neon),
-    0 0 120px rgba(255,0,127,0.8);
+    0 0 10px var(--color-white),
+    0 0 20px var(--color-pink-neon),
+    0 0 30px var(--color-pink-neon);
   margin: 0;
-  animation: textGlowPulse 4s infinite alternate ease-in-out;
+  animation: textGlowPulse 3s infinite alternate ease-in-out;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.main-text, .footer-text {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-white);
+  text-shadow: 
+    0 0 5px rgba(0,0,0,0.9),
+    0 0 10px var(--color-pink-neon);
+  margin: 0.5rem 0 0 0;
+  font-weight: 400;
+  line-height: 1.3;
 }
 
 @keyframes textGlowPulse {
   0% {
     text-shadow:
-      0 0 20px var(--color-white),
-      0 0 40px var(--color-pink-neon),
-      0 0 80px var(--color-pink-neon),
-      0 0 120px rgba(255,0,127,0.8);
+      0 0 10px var(--color-white),
+      0 0 20px var(--color-pink-neon),
+      0 0 30px var(--color-pink-neon);
   }
   100% {
     text-shadow:
-      0 0 25px var(--color-white),
-      0 0 50px var(--color-pink-neon),
-      0 0 100px var(--color-pink-neon),
-      0 0 150px rgba(255,0,127,0.95);
+      0 0 15px var(--color-white),
+      0 0 30px var(--color-pink-neon),
+      0 0 45px var(--color-pink-neon);
   }
 }
 
-p {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.3rem;
-  line-height: 1.4;
-  color: var(--color-white);
-  text-shadow: 0 0 10px rgba(0,0,0,0.9);
-  margin: 0;
-}
-
-/* ======== CONTENEDOR DE VIDEO MEJORADO ======== */
+/* ======== VIDEO OPTIMIZADO PARA MÓVIL ======== */
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -185,24 +184,24 @@ p {
   align-items: center;
   z-index: 6;
   overflow: hidden;
-  max-height: 70vh;
-  margin: 0.5rem 0;
+  max-height: 50vh; /* Más espacio para texto */
+  margin: 1rem 0;
 }
 
 .video-container {
   position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
-  max-height: 70vh;
+  width: 90vw;
+  height: 55vh;
+  max-width: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: transparent;
+  background: #000;
+  border-radius: 0; /* Sin bordes redondeados */
 }
 
-/* Iframe del video - SIN BORDES NEGROS */
+/* IFRAME SIN BORDES NEGROS */
 .video-container iframe {
   width: 100%;
   height: 100%;
@@ -211,25 +210,22 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  background: transparent;
-  object-fit: fill;
-  transform: scale(1.02); /* Elimina bordes pequeños */
+  background: #000;
+  object-fit: cover;
 }
 
-/* Marco de neón animado - MEJORADO */
+/* Marco de neón sutil */
 .video-container::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border: 3px solid var(--color-pink-neon);
-  border-radius: 8px;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--color-pink-neon);
   box-shadow: 
-    0 0 20px var(--color-pink-neon),
-    0 0 40px rgba(255,0,127,0.7),
-    inset 0 0 20px rgba(255,0,127,0.3);
+    0 0 15px var(--color-pink-neon),
+    0 0 30px rgba(255,0,127,0.5);
   animation: neonPulse 2s infinite alternate;
   pointer-events: none;
   z-index: 7;
@@ -238,79 +234,125 @@ p {
 @keyframes neonPulse {
   0% {
     box-shadow: 
-      0 0 15px var(--color-pink-neon),
-      0 0 30px rgba(255,0,127,0.5),
-      inset 0 0 15px rgba(255,0,127,0.2);
-    border-width: 2px;
+      0 0 10px var(--color-pink-neon),
+      0 0 20px rgba(255,0,127,0.3);
   }
   100% {
     box-shadow: 
-      0 0 25px var(--color-pink-neon),
-      0 0 50px rgba(255,0,127,0.8),
-      inset 0 0 25px rgba(255,0,127,0.4);
-    border-width: 3px;
+      0 0 20px var(--color-pink-neon),
+      0 0 40px rgba(255,0,127,0.6);
   }
 }
 
-/* ======== RESPONSIVE MEJORADO ======== */
-@media (max-width: 1024px) {
-  h1 { font-size: 5.5rem; }
-  p  { font-size: 2rem; }
-  .video-container { max-width: 380px; }
-}
+/* ======== MEDIA QUERIES ESPECÍFICAS PARA MÓVIL ======== */
 
-@media (max-width: 768px) {
-  h1 { font-size: 4rem; }
-  p  { font-size: 1.6rem; }
-  .video-container { 
-    max-width: 340px;
-    max-height: 65vh;
-  }
-  .main-content { padding: 0.75rem; }
-  .text-container { padding: 0.25rem 0.5rem; }
-}
-
-@media (max-width: 480px) {
-  h1 { font-size: 3rem; }
-  p  { font-size: 1.2rem; }
-  .video-container { 
-    max-width: 300px;
-    max-height: 60vh;
-  }
-  .main-content { padding: 0.5rem; }
-  .text-container { padding: 0.1rem 0.25rem; }
-}
-
-/* Orientación vertical (teléfono) */
-@media (max-height: 700px) and (orientation: portrait) {
-  .text-container { padding: 0.1rem; }
-  h1 { font-size: 2.5rem; }
-  p { font-size: 1rem; }
-  .video-container { 
-    max-height: 55vh;
+/* Móviles pequeños (hasta 360px) */
+@media (max-width: 360px) {
+  .main-content { padding: 3vh 0.5rem; }
+  
+  h1 { font-size: 2.2rem; }
+  .main-text, .footer-text { font-size: 1.1rem; }
+  
+  .video-container {
+    width: 95vw;
+    height: 50vh;
     max-width: 280px;
   }
-}
-
-/* Orientación horizontal (teléfono) */
-@media (max-height: 500px) and (orientation: landscape) {
-  .text-container { padding: 0.05rem; }
-  h1 { font-size: 2rem; }
-  p { font-size: 0.9rem; }
-  .video-container { 
-    max-height: 80vh;
-    max-width: 250px;
+  
+  .text-container {
+    padding: 0.8rem;
+    margin: 0.3rem 0;
   }
-  .video-wrapper { max-height: 85vh; }
 }
 
-/* Para pantallas muy altas */
-@media (min-height: 1000px) {
-  .video-container { max-height: 60vh; }
-  h1 { font-size: 8rem; }
-  p { font-size: 2.8rem; }
-}
-  h1 { font-size: 2rem; }
-  p { font-size: 0.9rem; }
+/* Móviles medianos (361px - 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+  .main-content { padding: 4vh 0.8rem; }
+  
+  h1 { font-size: 2.8rem; }
+  .main-text, .footer-text { font-size: 1.3rem; }
+  
+  .video-container {
+    width: 92vw;
+    height: 52vh;
+    max-width: 300px;
+  }
 }
 
+/* Móviles grandes (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .main-content { padding: 4vh 1rem; }
+  
+  h1 { font-size: 3.5rem; }
+  .main-text, .footer-text { font-size: 1.6rem; }
+  
+  .video-container {
+    width: 85vw;
+    height: 55vh;
+    max-width: 350px;
+  }
+}
+
+/* Tablets (769px+) - por si acaso */
+@media (min-width: 769px) {
+  .main-content { padding: 5vh 1.5rem; }
+  
+  h1 { font-size: 4rem; }
+  .main-text, .footer-text { font-size: 1.8rem; }
+  
+  .video-container {
+    width: 80vw;
+    height: 60vh;
+    max-width: 400px;
+  }
+}
+
+/* ORIENTACIÓN HORIZONTAL EN MÓVIL */
+@media (max-height: 500px) and (orientation: landscape) {
+  .main-content {
+    padding: 2vh 0.5rem;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .text-container {
+    flex: 1;
+    margin: 0 0.5rem;
+    max-width: 30%;
+  }
+  
+  .video-wrapper {
+    flex: 2;
+    max-height: 80vh;
+    margin: 0 0.5rem;
+  }
+  
+  .video-container {
+    height: 70vh;
+    max-width: 200px;
+  }
+  
+  h1 { font-size: 1.8rem; }
+  .main-text, .footer-text { font-size: 0.9rem; }
+}
+
+/* Pantallas muy altas */
+@media (min-height: 800px) {
+  .video-container {
+    height: 60vh;
+    max-width: 350px;
+  }
+  
+  h1 { font-size: 3.5rem; }
+  .main-text, .footer-text { font-size: 1.8rem; }
+}
+
+/* Asegurar que el texto sea siempre legible */
+.text-container {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .main-text, .footer-text {
+  text-rendering: optimizeLegibility;
+}
